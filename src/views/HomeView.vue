@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import Message from '@/components/Message.vue';
 import RefExample from '@/components/RefExample.vue';
 import WordCountView from './WordCountView.vue';
+import EmitView from './EmitView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -25,7 +26,8 @@ interface Message {
 
 <template>
   <!-- <RefExample/> -->
-  <WordCountView/>
+  <!-- <WordCountView/> -->
+  <EmitView/>
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>

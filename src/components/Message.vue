@@ -2,7 +2,7 @@
 
 interface Props {
   msg: string;
-  date: string;
+  data: string;
 }
 const props = defineProps<Props>();
 
@@ -10,7 +10,7 @@ const props = defineProps<Props>();
 
 <template>
   <div class="container">
-    <p>[{{ date }}] {{ msg }}</p>
+    <p>[{{ data }}] {{ msg }}</p>
   </div>
 </template>
 
