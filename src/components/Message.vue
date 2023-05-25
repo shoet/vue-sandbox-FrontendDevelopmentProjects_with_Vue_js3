@@ -12,7 +12,6 @@ const props = defineProps<Props>();
   <div class="container">
     <p>[{{ date }}] {{ msg }}</p>
   </div>
-
 </template>
 
 <style>
