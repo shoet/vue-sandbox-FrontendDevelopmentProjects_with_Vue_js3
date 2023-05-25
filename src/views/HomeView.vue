@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Message from '@/components/Message.vue';
+import RefExample from '@/components/RefExample.vue';
+import WordCountView from './WordCountView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -22,7 +24,9 @@ interface Message {
 </script>
 
 <template>
-  <h1>HomeView</h1>
+  <!-- <RefExample/> -->
+  <WordCountView/>
+  <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
       <input type="text" v-model="inputText">
@@ -37,8 +41,7 @@ interface Message {
       v-bind:msg="msg.message"
       v-bind:date="msg.datetime"
       />
-
-  </div>
+  </div> -->
 </template>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useTodoStore } from '@/repositories/TodoStore';
+import { useTodoStore } from '@/stores/TodoStore';
 
 import type { Todo } from '@/types/Todo';
 import TodoCard from '@/components/TodoCard.vue';
