@@ -7,6 +7,7 @@ import EmitView from './EmitView.vue';
 import PostMessageView from './PostMessageView.vue';
 import JSXTestView from './JSXTestView.vue';
 import BlogGallalyView from './BlogGallalyView.vue';
+import LanguageCountView from './LanguageCountView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -33,7 +34,8 @@ interface Message {
   <!-- <EmitView/> -->
   <!-- <PostMessageView /> -->
   <!-- <JSXTestView /> -->
-  <BlogGallalyView />
+  <!-- <BlogGallalyView /> -->
+  <LanguageCountView />
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
