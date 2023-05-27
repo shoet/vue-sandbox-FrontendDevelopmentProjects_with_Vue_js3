@@ -6,6 +6,7 @@ import WordCountView from './WordCountView.vue';
 import EmitView from './EmitView.vue';
 import PostMessageView from './PostMessageView.vue';
 import JSXTestView from './JSXTestView.vue';
+import BlogGallalyView from './BlogGallalyView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -31,7 +32,8 @@ interface Message {
   <!-- <WordCountView/> -->
   <!-- <EmitView/> -->
   <!-- <PostMessageView /> -->
-  <JSXTestView />
+  <!-- <JSXTestView /> -->
+  <BlogGallalyView />
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
