@@ -23,8 +23,8 @@ watch(names, () => {
 <template>
   <div class="language-count-view-container">
     <h2>LanguageCountView</h2>
-    <input type="text" placeholder="first name" v-model="names.firstName">
-    <input type="text" placeholder="last name" v-model="names.lastName">
+    <input type="text" placeholder="first name" v-model="names.firstName" data-testid="input-firstName">
+    <input type="text" placeholder="last name" v-model="names.lastName" data-testid="input-lastName">
   </div>
 </template>
 

@@ -3,7 +3,7 @@ import { ref, reactive } from 'vue';
 
 import LanguageCountInputField from '@/components/LanguageCountInputField.vue';
 
-const output = ref({
+const output = reactive({
   fullName: '',
   count: 0
 });
@@ -16,8 +16,8 @@ const output = ref({
     v-model:fullName="output.fullName"
     v-model:count="output.count"/>
   <div class="result-container">
-    <p>fullName: {{ output.fullName }}</p>
-    <p>count: {{ output.count }}</p>
+    <p data-testid="result-fullName">fullName: {{ output.fullName }}</p>
+    <p data-testid="result-count">count: {{ output.count }}</p>
   </div>
 </template>
 
