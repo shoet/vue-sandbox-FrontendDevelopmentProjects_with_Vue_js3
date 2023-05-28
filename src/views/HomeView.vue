@@ -10,6 +10,7 @@ import BlogGallalyView from './BlogGallalyView.vue';
 import LanguageCountView from './LanguageCountView.vue';
 import LifeCycleView from './LifeCycleView.vue';
 import ComposableView from './ComposableView.vue';
+import BlogContentfulView from './blog-contentful/BlogContentfulView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -39,7 +40,8 @@ interface Message {
   <!-- <BlogGallalyView /> -->
   <!-- <LanguageCountView /> -->
   <!-- <LifeCycleView /> -->
-  <ComposableView />
+  <!-- <ComposableView /> -->
+  <BlogContentfulView />
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
