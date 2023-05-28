@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import InputText from './InputText.vue';
 import type { Blog } from '@/stores/blog-contentful/useBlogs';
 import { v4 as uuidv4 } from "uuid";
 
 interface Emits {
-  (event: 'onSubmit', item: Blog): void;
+  (event: 'onSubmit', item: Blog, callback: (() => Promise<void>)): void;
   (event: 'update:isShow', isShow: boolean): void;
 }
 const emits = defineEmits<Emits>();
@@ -23,7 +23,9 @@ const onCancel = () => {
   emits('update:isShow', false);
 }
 
-const onSubmit = () => {
+const isSubmitting = ref(false);
+const onSubmit = async () => {
+  isSubmitting.value = true;
   const blog: Blog = {
     id: uuidv4(),
     title: newBlog.title,
@@ -33,11 +35,15 @@ const onSubmit = () => {
     updated_at: 'yyyymmdd',
     tags: ['aaa', 'bbb'],
   }
-  emits('onSubmit', blog);
-  newBlog.title = '';
-  newBlog.author = '';
-  newBlog.content = '';
-  emits('update:isShow', false);
+  emits('onSubmit', blog, async () => {
+    newBlog.title = '';
+    newBlog.author = '';
+    newBlog.content = '';
+    const sleep = () => new Promise<void>(resolve => setTimeout(resolve, 500));
+    await sleep();
+    isSubmitting.value = false;
+    emits('update:isShow', false);
+  });
 }
 </script>
 
@@ -47,8 +53,8 @@ const onSubmit = () => {
     <InputText v-bind:label="'Author'" v-bind:placeholder="'Author'" v-bind:type="'text'" v-model:value="newBlog.author"/>
     <InputText v-bind:label="'Content'" v-bind:placeholder="'Content'" v-bind:type="'textarea'" v-model:value="newBlog.content"/>
     <div class="submit-container">
-      <button class="submit-button submit-button--bg-warn" @click="onCancel">Cancel</button>
-      <button class="submit-button submit-button--bg-success" @click="onSubmit">Submit</button>
+      <button class="submit-button submit-button--bg-warn" @click="onCancel" v-bind:disabled="isSubmitting">Cancel</button>
+      <button class="submit-button submit-button--bg-success" @click="onSubmit" v-bind:disabled="isSubmitting">Submit</button>
     </div>
   </div>
 </template>
@@ -73,6 +79,10 @@ const onSubmit = () => {
   border: none;
   border-radius: 3px;
   font-size: 1.0rem;
+}
+.submit-button:disabled {
+  background-color: gray;
+  color: white;
 }
 .submit-button--bg-warn {
   background-color: rgb(255, 111, 0);

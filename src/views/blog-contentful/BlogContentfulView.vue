@@ -5,7 +5,7 @@ import { useListActions } from '@/stores/blog-contentful/useListActions';
 import Blog from '@/components/BlogContentful/Blog.vue';
 import BlogEditor from '@/components/BlogContentful/BlogEditor.vue';
 
-const { blogs, isLoading, error, addBlog } = useBlogs();
+const { blogs, isLoading, error, addBlog, deleteBlog } = useBlogs();
 // const { addItem, deleteItem } = useListActions(blogs);
 
 const isShowAdd = ref(false);
@@ -33,7 +33,7 @@ const onAddClick = () => {
         v-model:isShow="isShowAdd"
         v-on:onSubmit="addBlog"
         />
-      <Blog v-for="blog in blogs" v-bind:key="blog.id" v-bind:blog="blog"/>
+      <Blog v-for="blog in blogs" v-bind:key="blog.id" v-bind:blog="blog" v-on:onDelete="deleteBlog"/>
     </div>
   </template>
 

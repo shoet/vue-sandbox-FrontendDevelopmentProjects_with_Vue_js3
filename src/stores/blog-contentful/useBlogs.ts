@@ -65,7 +65,7 @@ export const useBlogs = () => {
     try {
       const res = await previewClient.getEntries({
         content_type: "blog",
-        order: ['fields.updatedAt']
+        order: ['-fields.updatedAt']
       });
 
       blogs.value = res.items.map((item) => {
@@ -85,7 +85,7 @@ export const useBlogs = () => {
     return environment;
   }
 
-  const addBlog = async (blog: Blog) => {
+  const addBlog = async (blog: Blog, callback?: (() => Promise<void>)) => {
     try {
       const environment = await getEnvironment();
       const response = await environment.createEntryWithId(
@@ -97,21 +97,40 @@ export const useBlogs = () => {
             title: {'en-US': blog.title},
             author: {'en-US': blog.author},
             content: {'en-US': blog.content},
-            createdAt: {'en-US': "2023-05-28T02:37:37.691Z"},
-            updatedAt: {'en-US': "2023-05-28T02:37:37.691Z"},
+            createdAt: {'en-US': new Date()},
+            updatedAt: {'en-US': new Date()},
             tags: {'en-US': blog.tags},
           }
         }
       );
       await response.publish();
+      if (callback) {
+        await callback();
+      }
       await getBlogs();
     } catch(err) {
       console.log(err);
     } 
-  }
+  };
+
+  const deleteBlog = async (blog: Blog, callback?: (() => Promise<void>)) => {
+    try {
+      const environment = await getEnvironment();
+      const entry = await environment.getEntry(blog.id);
+      await entry.unpublish();
+      await environment.deleteEntry(blog.id);
+      if (callback) {
+        await callback();
+      }
+      await getBlogs();
+
+    } catch(err) {
+      console.log(err);
+    }
+  };
 
   onBeforeMount(getBlogs);
 
-  return { blogs, isLoading, error, addBlog }
+  return { blogs, isLoading, error, addBlog, deleteBlog }
 
 }
