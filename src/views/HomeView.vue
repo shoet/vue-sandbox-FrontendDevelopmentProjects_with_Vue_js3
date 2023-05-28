@@ -9,6 +9,7 @@ import JSXTestView from './JSXTestView.vue';
 import BlogGallalyView from './BlogGallalyView.vue';
 import LanguageCountView from './LanguageCountView.vue';
 import LifeCycleView from './LifeCycleView.vue';
+import ComposableView from './ComposableView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -37,7 +38,8 @@ interface Message {
   <!-- <JSXTestView /> -->
   <!-- <BlogGallalyView /> -->
   <!-- <LanguageCountView /> -->
-  <LifeCycleView />
+  <!-- <LifeCycleView /> -->
+  <ComposableView />
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
