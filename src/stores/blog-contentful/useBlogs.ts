@@ -1,20 +1,14 @@
 import { ref, onBeforeMount } from "vue"
 import { createClient as ContentfulPreviewClient } from "contentful";
 import { createClient as ContentfulManagementClient } from "contentful-management";
-import { v4 as uuid } from 'uuid';
-
-import { useFetch } from "../fetchExample";
-
-const spaceId = '58we9pl2keu6';
 
 const previewClient = ContentfulPreviewClient({
-  space: spaceId,
-  // accessToken: 'P8tOsZiFd_-m1s_m4EX2zM8W858vp_5BISzpmBvgB_w',
-  accessToken: 'FcHpyDj1FBKEU9GfbG1dA9DVPOyXT7t6XKdDDS0VZtU',
+  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID_BLOG,
+  accessToken: import.meta.env.VITE_CONTENTFUL_PREVIEW_TOKEN
 })
 
 const managementClient = ContentfulManagementClient({
-  accessToken: 'CFPAT-e8fO__0GQv0MxIK4dJigl8LrUreQzDamgF2u_Oljs70',
+  accessToken: import.meta.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN
 })
 
 export interface Blog {
@@ -80,7 +74,7 @@ export const useBlogs = () => {
   }
 
   const getEnvironment = async () => {
-    const space = await managementClient.getSpace(spaceId);
+    const space = await managementClient.getSpace(import.meta.env.VITE_CONTENTFUL_SPACE_ID_BLOG);
     const environment = await space.getEnvironment('master');
     return environment;
   }
