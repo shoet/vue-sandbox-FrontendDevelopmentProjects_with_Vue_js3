@@ -11,6 +11,8 @@ import LanguageCountView from './LanguageCountView.vue';
 import LifeCycleView from './LifeCycleView.vue';
 import ComposableView from './ComposableView.vue';
 import BlogContentfulView from './blog-contentful/BlogContentfulView.vue';
+import GlobalCompTest from '@/components/GlobalCompTest.vue';
+import NonSfcComponents from './non-sfc-components/NonSfcComponents.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -41,7 +43,9 @@ interface Message {
   <!-- <LanguageCountView /> -->
   <!-- <LifeCycleView /> -->
   <!-- <ComposableView /> -->
-  <BlogContentfulView />
+  <!-- <BlogContentfulView /> -->
+  <!-- <GlobalCompTest /> -->
+  <NonSfcComponents/>
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
