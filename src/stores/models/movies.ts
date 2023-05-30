@@ -9,16 +9,17 @@ export interface Movie {
 }
 
 export function movieParser(item: any): Movie {
-  const id = item.id;
-  const title = item.title;
-  const producer = item.title;
-  let imageUrl = item.imageUrl;
-  if (item.imageUrl) {
-    imageUrl = item.imageUrl.fields.file.url;
+  const fields = item.fields;
+  const id = fields.id;
+  const title = fields.title;
+  const producer = fields.title;
+  let imageUrl = fields.image;
+  if (fields.image) {
+    imageUrl = fields.image.fields.file.url;
   }
   let category;
-  if (item.category) {
-    category = item.category;
+  if (fields.category) {
+    category = fields.category;
   }
   return {
     id: id, 

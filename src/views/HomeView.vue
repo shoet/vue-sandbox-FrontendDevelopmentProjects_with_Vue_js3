@@ -14,6 +14,7 @@ import BlogContentfulView from './blog-contentful/BlogContentfulView.vue';
 import GlobalCompTest from '@/components/GlobalCompTest.vue';
 import NonSfcComponents from './non-sfc-components/NonSfcComponents.vue';
 import DynamicComponentView from './dynamic-component/DynamicComponentView.vue';
+import DynamicComponentAnimalView from './dynamic-component/DynamicComponentAnimalView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -47,7 +48,8 @@ interface Message {
   <!-- <BlogContentfulView /> -->
   <!-- <GlobalCompTest /> -->
   <!-- <NonSfcComponents/> -->
-  <DynamicComponentView/>
+  <!-- <DynamicComponentView/> -->
+  <DynamicComponentAnimalView/>
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>

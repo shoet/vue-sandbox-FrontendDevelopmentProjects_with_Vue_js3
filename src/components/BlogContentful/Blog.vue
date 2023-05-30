@@ -51,7 +51,7 @@ const onDelete = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .blog-container {
   border: 1px solid transparent;
   box-shadow: 1px 0px 4px gray;
