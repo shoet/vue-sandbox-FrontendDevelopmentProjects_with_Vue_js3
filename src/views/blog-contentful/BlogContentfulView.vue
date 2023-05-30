@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useBlogs } from '@/stores/blog-contentful/useBlogs';
-import { useListActions } from '@/stores/blog-contentful/useListActions';
 import Blog from '@/components/BlogContentful/Blog.vue';
 import BlogEditor from '@/components/BlogContentful/BlogEditor.vue';
+import { blogParser } from '@/stores/models/blog';
+import { useContentful } from '@/stores/contentful/useContentful';
 
-const { blogs, isLoading, error, addBlog, deleteBlog } = useBlogs();
-// const { addItem, deleteItem } = useListActions(blogs);
+const {data, isLoading, error, addItem, deleteItem } = useContentful('blog', 'createdAt', blogParser);
 
 const isShowAdd = ref(false);
 
@@ -31,9 +30,9 @@ const onAddClick = () => {
       <BlogEditor 
         v-if="isShowAdd" 
         v-model:isShow="isShowAdd"
-        v-on:onSubmit="addBlog"
+        v-on:onSubmit="addItem"
         />
-      <Blog v-for="blog in blogs" v-bind:key="blog.id" v-bind:blog="blog" v-on:onDelete="deleteBlog"/>
+      <Blog v-for="blog in data" v-bind:key="blog.id" v-bind:blog="blog" v-on:onDelete="deleteItem"/>
     </div>
   </template>
 

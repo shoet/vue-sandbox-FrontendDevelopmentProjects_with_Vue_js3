@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import InputText from './InputText.vue';
-import type { Blog } from '@/stores/blog-contentful/useBlogs';
+import type { Blog } from '@/stores/models/blog';
 import { v4 as uuidv4 } from "uuid";
 import { getJSTDate } from '@/util/utils';
 

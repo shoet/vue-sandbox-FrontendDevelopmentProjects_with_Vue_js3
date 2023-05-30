@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, onUpdated, onMounted } from 'vue';
-import type { Blog } from '@/stores/blog-contentful/useBlogs';
-import { richTextFromMarkdown } from '@contentful/rich-text-from-markdown';
+import { ref, onMounted } from 'vue';
+import type { Blog } from '@/stores/models/blog';
 import { marked } from "marked";
 
 interface Props {
