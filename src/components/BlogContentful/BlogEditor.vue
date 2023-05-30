@@ -3,6 +3,7 @@ import { ref, reactive } from 'vue';
 import InputText from './InputText.vue';
 import type { Blog } from '@/stores/blog-contentful/useBlogs';
 import { v4 as uuidv4 } from "uuid";
+import { getJSTDate } from '@/util/utils';
 
 interface Emits {
   (event: 'onSubmit', item: Blog, callback: (() => Promise<void>)): void;
@@ -31,8 +32,8 @@ const onSubmit = async () => {
     title: newBlog.title,
     author: newBlog.author,
     content: newBlog.content,
-    created_at: 'yyyymmdd',
-    updated_at: 'yyyymmdd',
+    createdAt: getJSTDate(),
+    updatedAt: getJSTDate(),
     tags: ['aaa', 'bbb'],
   }
   emits('onSubmit', blog, async () => {

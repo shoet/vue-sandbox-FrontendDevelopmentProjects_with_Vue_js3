@@ -16,8 +16,8 @@ export interface Blog {
   title: string;
   author: string;
   content: any;
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
   thumbnailImage?: string;
   tags: string[];
 }
@@ -32,8 +32,8 @@ export const useBlogs = () => {
     const id = fields.id;
     const title = fields.title;
     const author = fields.author;
-    const created_at = fields.createdAt;
-    const updated_at = fields.updatedAt;
+    const createdAt = fields.createdAt;
+    const updatedAt = fields.updatedAt;
     const tags = fields.tags;
     const content = fields.content;
     let thumbnailImageUrl: string|undefined;
@@ -45,8 +45,8 @@ export const useBlogs = () => {
       id: id, 
       title: title,
       author: author,
-      created_at: created_at,
-      updated_at: updated_at,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
       tags: tags,
       content: content,
       thumbnailImage: thumbnailImageUrl,
@@ -82,19 +82,16 @@ export const useBlogs = () => {
   const addBlog = async (blog: Blog, callback?: (() => Promise<void>)) => {
     try {
       const environment = await getEnvironment();
+      const itemFields: { [key: string]: { 'en-US': any } } = {};
+      for (const key in blog) {
+        const val = blog[key as keyof typeof blog];
+        itemFields[key] = {'en-US': val};
+      }
       const response = await environment.createEntryWithId(
         'blog', 
         blog.id,
         {
-          fields: {
-            id: {'en-US': blog.id},
-            title: {'en-US': blog.title},
-            author: {'en-US': blog.author},
-            content: {'en-US': blog.content},
-            createdAt: {'en-US': new Date()},
-            updatedAt: {'en-US': new Date()},
-            tags: {'en-US': blog.tags},
-          }
+          'fields': itemFields
         }
       );
       await response.publish();

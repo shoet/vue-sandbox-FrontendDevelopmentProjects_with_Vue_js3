@@ -44,7 +44,7 @@ const onDelete = () => {
           v-bind:disabled="isSubmitting"
           >Delete</button>
       </div>
-      <div class="blog-sub">{{ blog.author }} {{ blog.created_at }}</div>
+      <div class="blog-sub">{{ blog.author }} {{ blog.createdAt }}</div>
       <div class="blog-content">
         <div v-bind:class="`${blog.id}-content`"></div>
       </div>
