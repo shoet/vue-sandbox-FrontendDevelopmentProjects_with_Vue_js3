@@ -5,10 +5,6 @@ interface Props {
   movie: Movie;
 }
 const props = defineProps<Props>();
-
-console.log(props.movie.imageUrl);
-console.log(import.meta.env.BASE_URL);
-
 </script>
 
 <template>

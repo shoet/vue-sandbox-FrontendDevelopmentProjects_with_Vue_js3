@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import { useContentful } from '@/stores/contentful/useContentful';
 import { movieParser } from '@/stores/models/movies';
-import type { Movie } from '@/stores/models/movies';
-import GridItem from '@/components/dynamic-component/GridItem.vue';
+import MovieGrid from '@/components/dynamic-component/MovieGrid.vue';
+import MovieList from '@/components/dynamic-component/MovieList.vue';
 
-const { data, isLoading, error, addItem, deleteItem } = useContentful('movies', 'title', movieParser);
+const { data, isLoading, error } = useContentful('movies', 'title', movieParser);
 
-const displayMode = ref('grid');
+const displayMode = ref(0);
+const components = [MovieGrid, MovieList];
+const currentComponent = computed(() => {
+  return components[displayMode.value];
+})
 
 </script>
 
@@ -16,11 +20,11 @@ const displayMode = ref('grid');
   <div class="container">
     <div class="display-mode">
       <div class="display-mode__item">
-        <input type="radio" id="displayMode1" v-model="displayMode" v-bind:value="'grid'">
+        <input type="radio" id="displayMode1" v-model="displayMode" v-bind:value=0>
         <label for="displayMode1">Grid</label>
       </div>
       <div class="display-mode__item">
-        <input type="radio" id="displayMode2" v-model="displayMode" v-bind:value="'list'">
+        <input type="radio" id="displayMode2" v-model="displayMode" v-bind:value=1>
         <label for="displayMode2">List</label>
       </div>
     </div>
@@ -31,13 +35,7 @@ const displayMode = ref('grid');
       <p>{{ error }}</p>
     </template>
     <template v-else>
-      <div class="movie-list">
-        <GridItem 
-          class="movie-list__item"
-          v-for="item in data"
-          v-bind:key="item.id"
-          v-bind:movie="item"/>
-      </div>
+      <component v-bind:is="currentComponent" v-bind:movies="data"/>
     </template>
   </div>
 </template>
@@ -54,13 +52,5 @@ const displayMode = ref('grid');
 .display-mode__item {
   display: inline-block;
   margin-right: 10px;
-}
-.movie-list {
-  display: flex;
-  /* 折返し */
-  flex-wrap: wrap;
-}
-.movie-list__item {
-  width: 33%;
 }
 </style>
