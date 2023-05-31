@@ -15,6 +15,7 @@ import GlobalCompTest from '@/components/GlobalCompTest.vue';
 import NonSfcComponents from './non-sfc-components/NonSfcComponents.vue';
 import DynamicComponentView from './dynamic-component/DynamicComponentView.vue';
 import DynamicComponentAnimalView from './dynamic-component/DynamicComponentAnimalView.vue';
+import TodoJsonplaceholderView from './todo_jsonplaceholder/TodoJsonplaceholderView.vue';
 
 const inputText = ref('');
 const messageList = ref<Message[]>([]);
@@ -49,7 +50,8 @@ interface Message {
   <!-- <GlobalCompTest /> -->
   <!-- <NonSfcComponents/> -->
   <!-- <DynamicComponentView/> -->
-  <DynamicComponentAnimalView/>
+  <!-- <DynamicComponentAnimalView/> -->
+  <TodoJsonplaceholderView/>
   <!-- <h1>HomeView</h1>
   <div class="post-form">
     <p>
