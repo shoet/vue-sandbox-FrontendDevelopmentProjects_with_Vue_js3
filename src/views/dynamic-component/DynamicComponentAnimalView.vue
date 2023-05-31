@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, shallowRef, computed } from 'vue';
 
 import { useContentful } from '@/stores/contentful/useContentful';
 import { movieParser } from '@/stores/models/movies';
@@ -8,26 +8,27 @@ import MovieList from '@/components/dynamic-component/MovieList.vue';
 
 const { data, isLoading, error } = useContentful('movies', 'title', movieParser);
 
-const displayMode = ref(0);
-const components = [MovieGrid, MovieList];
-const currentComponent = computed(() => {
-  return components[displayMode.value];
-})
+const currentComponent = shallowRef(MovieGrid);
+const displayOptions = [{
+  name: 'Grid',
+  component: MovieGrid
+}, {
+  name: 'List',
+  component: MovieList
+}]
 
 </script>
 
 <template>
   <div class="container">
-    <div class="display-mode">
-      <div class="display-mode__item">
-        <input type="radio" id="displayMode1" v-model="displayMode" v-bind:value=0>
-        <label for="displayMode1">Grid</label>
-      </div>
-      <div class="display-mode__item">
-        <input type="radio" id="displayMode2" v-model="displayMode" v-bind:value=1>
-        <label for="displayMode2">List</label>
-      </div>
-    </div>
+    DisplayMode: <select v-model="currentComponent">
+      <option 
+        v-for="option in displayOptions" 
+        v-bind:key="option.name"
+        v-bind:value="option.component">
+        {{ option.name }}
+      </option>
+    </select>
     <template v-if="isLoading">
       <p>loading...</p>
     </template>
