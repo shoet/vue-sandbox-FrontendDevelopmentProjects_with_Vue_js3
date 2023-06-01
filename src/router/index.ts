@@ -5,6 +5,7 @@ import TodoView from '@/views/TodoView.vue';
 import LayoutView from '@/views/LayoutView.vue';
 import Covid19View from '@/views/Covid19View.vue';
 import SlotPracticeView from "@/views/SlotPracticeView.vue";
+import ECMinimumView from "@/views/ec-minimum/ECMinimumView.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -32,6 +33,31 @@ const routes: RouteRecordRaw[] = [
     name: 'covid19',
     component: Covid19View
   },
+  {
+    path: '/ecminimum',
+    component: import('@/views/ec-minimum/ECMinimumView.vue'),
+    redirect: '/ecminimum/productList',
+    children: [
+      {
+        path: 'productList',
+        name: 'productList',
+        component:  import('@/views/ec-minimum/ProductList.vue'),
+        strict: true
+      },
+      {
+        path: 'cart',
+        name: 'cart',
+        component: import('@/views/ec-minimum/CartView.vue'),
+        strict: true
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: import('@/views/ec-minimum/AboutView.vue'),
+        strict: true
+      },
+    ]
+  }
 ]
 
 const router = createRouter({
