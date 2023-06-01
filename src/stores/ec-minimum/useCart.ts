@@ -49,6 +49,9 @@ export const useCartStore = defineStore({
         return;
       }
       cartItem.quantity--;
+    },
+    getCartItem(id: string): CartItem | undefined {
+      return this.cart.get(id);
     }
   }
 })

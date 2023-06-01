@@ -26,9 +26,9 @@ export const useProductStore = defineStore({
       try {
         this.isLoading = true;
         this.productList = [
-          {id: uuidv4(), name: 'banana', price: 100},
-          {id: uuidv4(), name: 'egg', price: 200},
-          {id: uuidv4(), name: 'tomato', price: 100},
+          {id: 'aaaaa', name: 'banana', price: 100},
+          {id: 'bbbbb', name: 'egg', price: 200},
+          {id: 'ccccc', name: 'tomato', price: 100},
         ]
       } catch(error) {
 
