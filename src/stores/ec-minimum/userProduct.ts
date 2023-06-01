@@ -35,6 +35,9 @@ export const useProductStore = defineStore({
       } finally {
         this.isLoading = false;
       }
+    },
+    getProduct(id: string): Product | undefined {
+      return this.productList.find((product) => product.id === id);
     }
   }
 })

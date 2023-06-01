@@ -36,13 +36,25 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/ecminimum',
     component: import('@/views/ec-minimum/ECMinimumView.vue'),
-    redirect: '/ecminimum/productList',
+    redirect: '/ecminimum/product',
     children: [
       {
-        path: 'productList',
-        name: 'productList',
+        path: 'product',
+        name: 'product',
         component:  import('@/views/ec-minimum/ProductList.vue'),
-        strict: true
+        strict: true,
+      },
+      {
+        path: 'product/:id',
+        name: 'detail',
+        component:  import('@/views/ec-minimum/ProductDetailView.vue'),
+        strict: true,
+        props: (routes) => {
+          console.log(routes.params.id);
+          return {
+            id: routes.params.id
+          }
+        }
       },
       {
         path: 'cart',

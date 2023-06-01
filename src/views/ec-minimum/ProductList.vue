@@ -42,13 +42,31 @@ onBeforeRouteUpdate(() => {
   console.log(cartStore.cart);
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.name === 'cart' && cartStore.cart.size === 0) {
+    alert('カートの中身が空です。')
+  } else {
+    next();
+  }
+})
+
+router.beforeResolve((to, from, next) => {
+  next();
+})
+
 </script>
 
 <template>
   <h2>Product List</h2>
   <ul>
     <li v-for="product in productStore.productList" v-bind:key="product.id">
-      <label for="product">{{ product.name }}: {{ product.price }}</label>
+      <label for="product">
+        <RouterLink v-bind:to="{ 
+            name: 'detail', 
+            params: { id: product.id }}
+        ">{{ product.name }}</RouterLink>
+        : {{ product.price }}
+      </label>
       AddCart
       <input 
         type="checkbox" 
