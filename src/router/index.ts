@@ -7,6 +7,7 @@ import Covid19View from '@/views/Covid19View.vue';
 import SlotPracticeView from "@/views/SlotPracticeView.vue";
 import ECMinimumView from "@/views/ec-minimum/ECMinimumView.vue";
 import TabExampleView from '@/views/tab-example/TabExampleView.vue'
+import TransitionExample from '@/views/transition-example/TransitionExampleView.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -59,6 +60,11 @@ const routes: RouteRecordRaw[] = [
         strict: true,
       },
     ]
+  },
+  {
+    path: '/transitionExample',
+    name: 'transitionExample',
+    component: TransitionExample
   },
   {
     path: '/ecminimum',
