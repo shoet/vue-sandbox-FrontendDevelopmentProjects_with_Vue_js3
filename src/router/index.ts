@@ -6,6 +6,7 @@ import LayoutView from '@/views/LayoutView.vue';
 import Covid19View from '@/views/Covid19View.vue';
 import SlotPracticeView from "@/views/SlotPracticeView.vue";
 import ECMinimumView from "@/views/ec-minimum/ECMinimumView.vue";
+import TabExampleView from '@/views/tab-example/TabExampleView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -34,6 +35,32 @@ const routes: RouteRecordRaw[] = [
     component: Covid19View
   },
   {
+    path: '/tabExample',
+    name: 'tabExample',
+    component: TabExampleView,
+    redirect: '/tabExample/tab1',
+    children: [
+      {
+        path: 'tab1',
+        name: 'tab1',
+        component:  import('@/components/tab-example/TabExampleTab1.vue'),
+        strict: true,
+      },
+      {
+        path: 'tab2',
+        name: 'tab2',
+        component:  import('@/components/tab-example/TabExampleTab2.vue'),
+        strict: true,
+      },
+      {
+        path: 'tab3',
+        name: 'tab3',
+        component:  import('@/components/tab-example/TabExampleTab3.vue'),
+        strict: true,
+      },
+    ]
+  },
+  {
     path: '/ecminimum',
     component: import('@/views/ec-minimum/ECMinimumView.vue'),
     redirect: '/ecminimum/product',
@@ -49,12 +76,13 @@ const routes: RouteRecordRaw[] = [
         name: 'detail',
         component:  import('@/views/ec-minimum/ProductDetailView.vue'),
         strict: true,
-        props: (routes) => {
-          console.log(routes.params.id);
-          return {
-            id: routes.params.id
-          }
-        }
+        props: true,
+        // props: (routes) => {
+        //   console.log(routes.params.id);
+        //   return {
+        //     id: routes.params.id
+        //   }
+        // }
       },
       {
         path: 'cart',

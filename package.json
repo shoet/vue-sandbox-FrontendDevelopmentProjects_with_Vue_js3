@@ -21,6 +21,7 @@
     "contentful-management": "^10.35.4",
     "countable": "^3.0.1",
     "marked": "^5.0.3",
+    "normalize.css": "^8.0.1",
     "pinia": "^2.0.36",
     "uuidv4": "^6.2.13",
     "vue": "^3.3.2",
