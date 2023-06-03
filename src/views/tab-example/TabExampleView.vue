@@ -41,7 +41,11 @@ const linkList: LinkList[] = [
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 50px;
+  height: 100vh;
+  /* font-family: serif; */
+  /* font-family: system-ui; */
+  font-family: Inter;
 }
 .tab-menu {
   display: flex;
@@ -78,7 +82,7 @@ const linkList: LinkList[] = [
   border-left: var(--border-width) solid var(--border-color);
   border-right: var(--border-width) solid var(--border-color);
   border-bottom: var(--border-width) solid var(--border-color);
-  height: 200px;
+  /* height: 200px; */
   border-radius: 0px 0px 10px 10px;
 }
 </style>

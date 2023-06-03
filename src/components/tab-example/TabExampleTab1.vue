@@ -3,7 +3,12 @@ import TabExampleComponent from './TabExampleComponent.vue';
 </script>
 
 <template>
-  <TabExampleComponent>Tab1</TabExampleComponent>
+  <TabExampleComponent>
+    <template v-slot:header>
+      Tab1
+    </template>
+    <template v-slot:code>$ Tab1</template>
+  </TabExampleComponent>
 </template>
 
 <style>
