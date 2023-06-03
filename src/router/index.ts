@@ -67,6 +67,11 @@ const routes: RouteRecordRaw[] = [
     component: TransitionExample
   },
   {
+    path: '/transitionTodoList',
+    name: 'transitionTodoList',
+    component: TransitionExample
+  },
+  {
     path: '/ecminimum',
     component: import('@/views/ec-minimum/ECMinimumView.vue'),
     redirect: '/ecminimum/product',

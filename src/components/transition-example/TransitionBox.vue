@@ -22,14 +22,14 @@ const onStart = () => {
 
 <style scoped>
 .container {
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   border: 1px solid black;
   position: relative
 }
 .round {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 100px;
   background-color: red;
   position: absolute;
