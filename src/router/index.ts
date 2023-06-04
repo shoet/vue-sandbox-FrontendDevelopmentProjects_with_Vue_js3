@@ -8,6 +8,7 @@ import SlotPracticeView from "@/views/SlotPracticeView.vue";
 import ECMinimumView from "@/views/ec-minimum/ECMinimumView.vue";
 import TabExampleView from '@/views/tab-example/TabExampleView.vue'
 import TransitionExample from '@/views/transition-example/TransitionExampleView.vue';
+import LineChatView from '@/views/transition-example/LineChatView.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -70,6 +71,11 @@ const routes: RouteRecordRaw[] = [
     path: '/transitionTodoList',
     name: 'transitionTodoList',
     component: TransitionExample
+  },
+  {
+    path: '/lineChatView',
+    name: 'lineChatView',
+    component: LineChatView,
   },
   {
     path: '/ecminimum',
