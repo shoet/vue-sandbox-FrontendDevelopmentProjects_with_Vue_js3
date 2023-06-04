@@ -9,6 +9,7 @@ import ECMinimumView from "@/views/ec-minimum/ECMinimumView.vue";
 import TabExampleView from '@/views/tab-example/TabExampleView.vue'
 import TransitionExample from '@/views/transition-example/TransitionExampleView.vue';
 import LineChatView from '@/views/transition-example/LineChatView.vue';
+import OverWrapView from '@/views/overwrap-view/OverWrapView.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -76,6 +77,17 @@ const routes: RouteRecordRaw[] = [
     path: '/lineChatView',
     name: 'lineChatView',
     component: LineChatView,
+  },
+  {
+    path: '/overflowWrapView',
+    component: OverWrapView,
+    children: [
+      {
+        path: 'child',
+        name: 'overflowWrapViewChild',
+        component: import('@/components/over-wrap/OverWrapChild.vue'),
+      }
+    ]
   },
   {
     path: '/ecminimum',
