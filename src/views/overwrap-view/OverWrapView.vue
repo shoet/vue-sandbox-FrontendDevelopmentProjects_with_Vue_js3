@@ -12,7 +12,7 @@ import OverWrapChild from '@/components/over-wrap/OverWrapChild.vue';
     </div>
     <div class="router-area">
       <RouterView v-slot="{ Component }">
-        <Transition name="route">
+        <Transition name="route" :mode="'in-out'">
           <component v-bind:is="Component"></component>
         </Transition>
       </RouterView>
@@ -37,11 +37,11 @@ import OverWrapChild from '@/components/over-wrap/OverWrapChild.vue';
 .router-area {
   top: 0px;
 }
-.route-enter-from {
+.route-enter-from, .route-leave-to {
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(100vh);
 }
-.route-enter-active {
+.route-enter-active, .route-leave-active {
   transition: all 0.5s ease-out;
 }
 </style>

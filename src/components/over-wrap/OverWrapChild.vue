@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import router from '@/router';
+
+const onClose = (): void => {
+  router.go(-1);
+}
 </script>
 
 <template>
@@ -7,12 +12,23 @@
       <!-- parent -->
     </div>
     <div class="this-area">
-      child area
+      <div class="header">
+        <div class="header__title">
+          child area
+        </div>
+        <div class="header__close-button">
+          <button @click="onClose">X</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 .over-wrap-child-container {
   /* background-color: gray; */
 }

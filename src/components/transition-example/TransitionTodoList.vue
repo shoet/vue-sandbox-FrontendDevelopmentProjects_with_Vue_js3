@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import type { TodoItem } from './TodoItem.vue';
 import TodoItemComponent from './TodoItem.vue';
+import gsap from 'gsap';
 
 const todoList = ref<TodoItem[]>([
   {task: 'cock', content: 'curry'},
@@ -20,10 +21,41 @@ const onDeleteTodo = (): void => {
 
 const onShuffle = (): void => {
   todoList.value.sort(() => Math.random() - 0.5);
+  gsap.to('.todo-list__item', {
+    duration: 0.2,
+    scale: 0.7,
+    y: 10,
+    x: 30,
+    yoyo: true,
+    repeat: 1,
+    ease: "inOut",
+    // delay:1,
+    stagger: {
+      amount: 0.3,
+      grid: "auto",
+      from: "end"
+    }
+  })
 }
 
 const onReverse = (): void => {
   todoList.value.reverse();
+  gsap.to('.todo-list__item', {
+    duration: 0.1,
+    // scale: 0.7,
+    y: 50,
+    // x: 30,
+    yoyo: true,
+    repeat: 1,
+    ease: "inOut",
+    // delay:1,
+    stagger: {
+      amount: 0.1,
+      grid: "auto",
+      from: "end"
+    }
+    
+  })
 }
 
 </script>
@@ -68,7 +100,7 @@ const onReverse = (): void => {
   transform: translateX(50px);
 }
 .todo-list-enter-active, .todo-list-leave-active {
-  transition: all 1s ease;
+  transition: all 0.5s ease;
 }
 .todo-list-move {
   transition: transform 0.5s;
