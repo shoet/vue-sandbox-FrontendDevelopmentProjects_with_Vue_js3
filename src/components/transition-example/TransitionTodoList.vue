@@ -51,6 +51,8 @@ const onDeleteTodo = (): void => {
 .todo-list__item {
   margin-bottom: 10px;
 }
+
+/* enter-from:showされた状態の最初 leave-to:dismissされる状態の最後 */
 .todo-list-enter-from, .todo-list-leave-to {
   opacity: 0;
   transform: translateX(50px);

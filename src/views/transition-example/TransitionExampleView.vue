@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import TransitionList from '@/components/transition-example/TransitionList.vue';
 import TransitionBox from '@/components/transition-example/TransitionBox.vue';
 import TransitionTodoList from '@/components/transition-example/TransitionTodoList.vue';
+import AnimationGsap from '@/components/transition-example/AnimationGsap.vue';
 
 const isShow = ref(false);
 const msg = ref('msg');
@@ -19,6 +20,7 @@ const boxCount = 5;
   <TransitionList/>
   <TransitionBox/>
   <TransitionTodoList/>
+  <AnimationGsap/>
 </template>
 
 <style scoped>
