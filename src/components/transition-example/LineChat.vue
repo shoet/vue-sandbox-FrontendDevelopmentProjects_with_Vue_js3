@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, type RendererElement } from 'vue';
 import { useMessageStore } from '@/stores/line-chat/messageStore';
 import type { Message } from '@/stores/models/line-chat/message';
 import LineChatMessage from './LineChatMessage.vue';
+
+import gsap from 'gsap';
 
 interface Props {
   playerId: string;
@@ -23,16 +25,42 @@ const isOwner = (message: Message): boolean => {
 
 onBeforeMount(messageStore.initMessage);
 
+const messageOnBeforeEnter = (el: RendererElement): void => {
+  const ele = el as HTMLInputElement;
+  const messageContainerOwner = ele.getElementsByClassName('line-chat-message--owner')[0];
+  let direction = 1;
+  if (messageContainerOwner == undefined) {
+    direction = -1
+  }
+  gsap.from(el, {
+    opacity: 0,
+    x: 30 * direction,
+  })
+}
+
+const messageOnEnter = (el: RendererElement, done: () => void): void => {
+  gsap.to(el, {
+    duration: 1,
+    opacity: 1,
+    onComplete: done,
+  })
+}
+
 </script>
 
 <template>
   <div class="line-chat-container">
     <div class="message-area">
-      <ul class="message-list">
+      <transition-group 
+        class="message-list" 
+        tag="ul"
+        @beforeEnter="messageOnBeforeEnter"
+        @enter="messageOnEnter"
+        >
         <li class="message" v-for="message in messageStore.messages" :key="message.id">
           <LineChatMessage :message="message" :isOwner="isOwner(message)"/>
         </li>
-      </ul>
+      </transition-group>
     </div>
     
     <div class="chat-area">

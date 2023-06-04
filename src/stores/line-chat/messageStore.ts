@@ -20,6 +20,7 @@ export const useMessageStore = defineStore({
   actions: {
     initMessage(): void {
       this.isLoading = true;
+      this.messages = [];
       this.messages.push({id: uuidv4(), userId: 'a', message: 'hoge1', createdAt: new Date()})
       this.messages.push({id: uuidv4(), userId: 'b', message: 'fuga1', createdAt: new Date()})
       this.messages.push({id: uuidv4(), userId: 'a', message: 'hoge2', createdAt: new Date()})
