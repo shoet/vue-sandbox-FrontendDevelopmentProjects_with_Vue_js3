@@ -18,12 +18,22 @@ const onDeleteTodo = (): void => {
   todoList.value.pop();
 }
 
+const onShuffle = (): void => {
+  todoList.value.sort(() => Math.random() - 0.5);
+}
+
+const onReverse = (): void => {
+  todoList.value.reverse();
+}
+
 </script>
 
 <template>
     <div class="transition-todo-list-container">
       <button @click="onAddTodo">ItemPush</button>
       <button @click="onDeleteTodo">ItemPop</button>
+      <button @click="onReverse">ItemReverse</button>
+      <button @click="onShuffle">ItemShuffle</button>
       <TransitionGroup class="todo-list" name="todo-list" tag="ul">
         <li v-for="todo in todoList" :key="todo.task">
           <TodoItemComponent class="todo-list__item" :todo="todo"/>
@@ -59,5 +69,8 @@ const onDeleteTodo = (): void => {
 }
 .todo-list-enter-active, .todo-list-leave-active {
   transition: all 1s ease;
+}
+.todo-list-move {
+  transition: transform 0.5s;
 }
 </style>
