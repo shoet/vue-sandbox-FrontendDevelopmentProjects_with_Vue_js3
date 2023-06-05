@@ -90,6 +90,11 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/inquiryForm',
+    name: 'inquiryForm',
+    component: import('@/views/inquiry-form/InquiryFormView.vue'),
+  },
+  {
     path: '/ecminimum',
     component: import('@/views/ec-minimum/ECMinimumView.vue'),
     redirect: '/ecminimum/product',
