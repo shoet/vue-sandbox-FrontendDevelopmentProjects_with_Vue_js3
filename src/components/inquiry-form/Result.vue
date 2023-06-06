@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { InquiryForm } from './InquiryForm.vue';
 
 interface Props {
@@ -6,6 +7,14 @@ interface Props {
 }
 const props = defineProps<Props>();
 
+const emailDomain = computed((): string|undefined => {
+  const re = new RegExp('.*\@(.*)')
+  const match = props.data.email.match(re);
+  if (match) {
+    return match[1];
+  }
+  return;
+})
 </script>
 
 <template>

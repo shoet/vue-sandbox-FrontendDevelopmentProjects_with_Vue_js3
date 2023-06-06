@@ -5,6 +5,9 @@ import InquiryForm from '@/components/inquiry-form/InquiryForm.vue';
 import InputField from '@/components/inquiry-form/InputField.vue';
 import Result from '@/components/inquiry-form/Result.vue';
 
+import router from '@/router';
+import App from '@/App.vue';
+
 describe('InquiryForm', () => {
   test('field init', () => {
     const wrapper = mount(InquiryForm);
@@ -36,7 +39,7 @@ describe('InquiryForm', () => {
     // DOMからコンポーネントを取り出す
     const fieldComponent = inputField.findComponent(InputField);
     // コンポーネントのemitを発火する v-modelを通してemitを発火しているので以下で呼び出し
-    await fieldComponent.vm.$emit('update:value', 'hoge');
+    await fieldComponent.vm.$emit('update:value', input);
 
     // data-testidを一つ上のDOMに仕掛けないとfindComponentが失敗してしまうことがある
     const resultComponent = wrapper.findComponent(Result);
@@ -44,4 +47,30 @@ describe('InquiryForm', () => {
 
     expect(actual).toBe(input);
   });
+
+  test('email domain', async () => {
+    const wrapper = mount(InquiryForm, {});
+
+    const input = 'hoge@gmail.com';
+
+    const inputField = wrapper.find('[data-testid="field-email"]');
+    const fieldComponent = inputField.findComponent(InputField);
+    await fieldComponent.vm.$emit('update:value', input);
+
+    const resultComponent = wrapper.findComponent(Result);
+
+    expect((resultComponent.vm as any).emailDomain).toBe('gmail.com');
+  })
+
+  test('router', async () => {
+    router.push('/inquiryForm');
+    await router.isReady();
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router]
+      }
+    });
+
+    expect(wrapper.text()).toMatch('name');
+  })
 })
